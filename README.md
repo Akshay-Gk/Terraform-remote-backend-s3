@@ -90,4 +90,48 @@ Attach "terraform-s3" role
 
 ![image](https://github.com/Akshay-Gk/Terraform-remote-backend-s3/assets/112197849/42a93345-4cd4-4b5e-bd21-a60d405e4fb6)
 
+## Step 4: Install terraform in ec2
 
+```
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+```
+
+## Step 5: Create terrafom files in ec2
+
+> Note : The terrafom files must be created with .tf extension.
+
+
+
+### Create the provider file
+
+> Note: Terraform relies on plugins called "providers" to interact with remote systems. Terraform configurations must declare which providers they require, so that Terraform can install and use them. I'm using AWS as provider
+
+```
+provider "aws" {
+
+region = "ap-south-1"
+
+}
+
+terraform {
+
+  backend "s3" {
+    bucket = "terraform.akshay.com"
+    key    = "terraform.tfstate"
+    region = "ap-south-1"
+  }
+}
+```
+> Note: Give desired AZ
+
+### Terraform initialize
+
+The terraform init command initializes a working directory containing Terraform configuration files
+
+> terraform init
+
+# Conclusion
+
+Here is a simple document on how to create AWS S3-bucket as the remote backend for Terraform

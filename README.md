@@ -106,6 +106,8 @@ Configuring a backend for any kind of Terraform project is always recommended. B
 
 ## Step 4: Install terraform in ec2
 
+> Below are the commands for amazon linux
+
 ```
 sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
@@ -139,7 +141,7 @@ terraform {
   }
 }
 ```
-> `Note: Give desired AZ`
+> `Note: Choose desired AZ`
 
 ### Terraform initialize
 
@@ -147,7 +149,7 @@ terraform {
 
 > `terraform init`
 
-* 
+* ***Now terraform state will be stored remotely in an S3 bucket. Since versioning is enabled we can find version files created whenever a change is made*** 
 
 
 # Conclusion
